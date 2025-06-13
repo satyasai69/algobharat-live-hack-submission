@@ -1,54 +1,49 @@
-# Algorand Smart ASA (Algorand Standard Asset) with Contract Logic
+## Smart Contract Tokenization Results
 
-This project demonstrates how to create a real Algorand Standard Asset (ASA) and link it with a smart contract that controls token minting and transfer restrictions through a whitelist mechanism.
+The smart contract and ASA were successfully deployed on Algorand TestNet with the following details:
 
-![screenshot](Screenshot.png)
+- Account Address: BJYOYIKCC4T5MSJTYERVXSK5KA3BROOKW4E372RKY5JMF6QUUVEI3WO7RE
+- Account Explorer URL: https://lora.algokit.io/testnet/account/BJYOYIKCC4T5MSJTYERVXSK5KA3BROOKW4E372RKY5JMF6QUUVEI3WO7RE
+- Asset Name: MySmartToken (MST)
+
+You can verify the smart contract, asset creation, and transactions using the provided URL above. A screenshot of the account activity is available in `screenshot.png`.
+
+![screenshot](screenshot.png)
+
+# Smart Contract Tokenization with Algorand
+
+This project demonstrates how to create an Algorand Standard Asset (ASA) linked to a smart contract that controls token behavior. The implementation includes programmable logic for minting control and transfer restrictions using a whitelist mechanism.
+
+## Prerequisites
+
+- Node.js installed on your system
+- Basic understanding of Algorand blockchain and smart contracts
+- Access to Algorand TestNet
+
+## Installation
+
+1. Clone the repository
+2. Navigate to the project directory
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+## Project Structure
+
+- `src/index.js`: Core implementation with smart contract code and helper functions
+- `src/deploymint.js`: Deployment script that demonstrates the full workflow
+- `package.json`: Project dependencies and scripts
+
 ## Features
 
-- **Smart Contract Deployment**: Deploy a TEAL smart contract that controls token behavior
-- **Real ASA Creation**: Create an actual Algorand Standard Asset (ASA)
-- **Contract-ASA Linking**: Link the ASA to the smart contract for controlled operations
+### Smart Contract Capabilities
+
 - **Minting Control**: Only the admin (contract creator) can mint new tokens
-- **Transfer Restrictions**: Transfers are only allowed if either the sender or receiver is whitelisted
+- **Transfer Restrictions**: Transfers are only allowed if either sender or receiver is whitelisted
 - **Whitelist Management**: Admin can add addresses to a whitelist for approved transfers
 - **Asset Freezing Control**: Unfreeze assets only for whitelisted addresses
-
-## Smart Contract Logic
-
-The contract implements the following functionality:
-
-1. **Creation**: Initializes global state with admin address and empty whitelist slots
-2. **ASA Linking**: Links a specific ASA to the contract by storing its ID
-3. **Mint Verification**: Verifies that only admin can mint (transfer from reserve)
-4. **Whitelist Management**: Admin can add addresses to the whitelist (supports multiple addresses)
-5. **Transfer Control**: Verifies transfers are only allowed if either sender or receiver is whitelisted
-
-## How to Run
-
-1. Make sure you have Node.js installed
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Run the deployment script:
-   ```
-   node src/deploymint.js
-   ```
-
-The script will:
-- Create a wallet if one doesn't exist (or reuse an existing one)
-- Create a test receiver wallet
-- Deploy the smart contract
-- Create an actual Algorand Standard Asset (ASA)
-- Link the ASA to the smart contract
-- Add both accounts to the whitelist
-- Have the receiver opt-in to the asset
-- Unfreeze the asset for whitelisted accounts
-- Mint (transfer) tokens to the receiver
-- Demonstrate a transfer between accounts
-- Display the contract state and asset holdings at each step
-
-## Technical Details
 
 ### Global State Variables
 
@@ -58,42 +53,69 @@ The script will:
 - `whitelist2`: Second whitelisted address
 - `minted`: Status indicating if tokens have been minted
 
-### Contract Operations
+## Usage
+
+1. Run the deployment script:
+
+```bash
+node src/deploymint.js
+```
+
+2. The script will:
+   - Create wallets if they don't exist
+   - Deploy the smart contract
+   - Create an Algorand Standard Asset (ASA)
+   - Link the ASA to the smart contract
+   - Add addresses to the whitelist
+   - Demonstrate minting and transfers between accounts
+
+## Code Example
+
+```javascript
+// Deploy smart contract
+const appId = await deploySmartASA(mainAccount);
+
+// Create an actual ASA
+const assetId = await createASA(
+  mainAccount,
+  "MySmartToken",
+  "MST",
+  10000 // Total supply
+);
+
+// Link ASA to Smart Contract
+await linkAssetToContract(appId, assetId, mainAccount);
+
+// Add accounts to whitelist
+await addToWhitelist(appId, mainAccount, receiverAccount.addr);
+
+// Mint (transfer) tokens to receiver
+await mintASA(assetId, appId, mainAccount, receiverAccount, 100);
+```
+
+## Smart Contract Implementation
+
+The TEAL smart contract implements the following operations:
 
 - `setAssetID`: Links an ASA to the contract (admin only)
 - `mint`: Verifies minting permission (admin only)
 - `addToWhitelist`: Adds an address to the whitelist (admin only)
 - `transfer`: Verifies a token transfer, checking whitelist restrictions
 
-### ASA Operations
+## Security Considerations
 
-- `createASA`: Creates a new Algorand Standard Asset
-- `optInToAsset`: Allows an account to receive the asset
-- `unfreezeAsset`: Unfreezes assets for whitelisted addresses
-- `mintASA`: Transfers tokens from reserve to a recipient (requires contract verification)
-- `transferASA`: Transfers tokens between accounts (requires contract verification)
+1. The contract uses global state to track the admin, asset ID, and whitelisted addresses
+2. All sensitive operations are restricted to the admin
+3. Transfers are verified through the smart contract before execution
+4. Assets are frozen by default and only unfrozen for whitelisted addresses
 
-## Implementation Details
+## Viewing Your Smart Contract and Asset
 
-1. **Smart Contract Structure**:
-   - Uses TEAL (Transaction Execution Approval Language) for Algorand smart contracts
-   - Implements branching logic for different operations
-   - Uses global state to track admin, asset ID, and whitelisted addresses
+After deployment, you can view your smart contract and asset on the Algorand TestNet explorer using the provided URL:
 
-2. **Whitelist Implementation**:
-   - Supports multiple whitelisted addresses (currently two)
-   - Checks if either sender or receiver is whitelisted before allowing transfers
-   - Only admin can add addresses to the whitelist
-
-3. **ASA Integration**:
-   - Creates a frozen ASA by default for security
-   - Unfreezes only for whitelisted addresses
-   - Links the ASA to the smart contract via the asset ID
-
-4. **Transaction Security**:
-   - Uses atomic transactions (transaction groups) to ensure contract verification happens before asset transfers
-   - Requires opt-in before receiving assets
-   - Implements proper authorization checks for all operations
+```
+https://lora.algokit.io/testnet/account/BJYOYIKCC4T5MSJTYERVXSK5KA3BROOKW4E372RKY5JMF6QUUVEI3WO7RE
+```
 
 ## Future Enhancements
 
@@ -102,4 +124,3 @@ The script will:
 - Implement balance tracking per address
 - Add clawback functionality for regulatory compliance
 - Implement more complex transfer rules
-
