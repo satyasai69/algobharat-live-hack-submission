@@ -1,3 +1,15 @@
+## Add Metadata and Asset Controls Results
+
+The token was successfully created & Asset Config on Algorand TestNet with the following details:
+
+- Asset ID: 741163142
+- Asset Explorer URL: https://lora.algokit.io/testnet/asset/741163142
+- Creation & Asset Config Transaction: https://lora.algokit.io/testnet/transaction/QWDB6NUNAHVIZJ4TKH7PVCY3QW4HA7XLKHBQLG5KWN3VO4TA73CQ
+
+You can verify the token creation and its details using the provided URLs above. A screenshot of the successful creation is available in `Screenshot.png`.
+
+![screenshot](Screenshot.png)
+
 # Add Metadata and Asset Controls to Algorand Standard Assets
 
 This project demonstrates how to create an Algorand Standard Asset (ASA) with metadata and role-based access controls. The example creates a fungible token with 1,000,000 total supply, 2 decimal places, and implements various control addresses for asset management.
@@ -13,6 +25,7 @@ This project demonstrates how to create an Algorand Standard Asset (ASA) with me
 1. Clone the repository
 2. Navigate to the project directory
 3. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -41,6 +54,7 @@ npm install
 ## Usage
 
 1. Run the asset creation script:
+
 ```bash
 npm run create
 ```
@@ -80,6 +94,7 @@ const asset = await algorand.send.assetCreate({
 ## Viewing Your Asset
 
 After creation, you can view your asset on the Algorand TestNet explorer using the provided URL:
+
 ```
 https://lora.algokit.io/testnet/asset/<asset-id>
 ```
@@ -87,19 +102,23 @@ https://lora.algokit.io/testnet/asset/<asset-id>
 ## Understanding Asset Controls
 
 ### Manager Address
+
 - Can change the reserve, freeze, and clawback addresses
 - Can modify the asset URL
 - Cannot modify total supply, unit name, asset name, or decimals
 
 ### Reserve Address
+
 - Holds non-minted asset units
 - Important for assets that will be gradually released
 
 ### Freeze Address
+
 - Can freeze or unfreeze asset holdings for specific accounts
 - Useful for compliance and regulatory requirements
 
 ### Clawback Address
+
 - Can transfer assets between accounts without signatures
 - Useful for regulated assets and recovery of lost tokens
 
