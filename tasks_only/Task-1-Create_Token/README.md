@@ -1,3 +1,17 @@
+## Asset Creation Results
+
+The token was successfully created on Algorand TestNet with the following details:
+
+- Asset ID: 741162702
+- Asset Explorer URL: https://lora.algokit.io/testnet/asset/741162702
+- Creation Transaction: https://lora.algokit.io/testnet/transaction/JDFVGO6LRU7GC23JWHIMJF3DVIHHFC3TPWH3HTAEC6B37ZCVQ5UQ
+
+You can verify the token creation and its details using the provided URLs above. A screenshot of the successful creation is available in `Screenshot.png`.
+
+
+
+
+
 # Create Token using AlgoKit
 
 This project demonstrates how to create an Algorand Standard Asset (ASA) using AlgoKit utilities. The example creates a fungible token named "Really Useful Gift" (RUG) on the Algorand TestNet.
@@ -13,6 +27,7 @@ This project demonstrates how to create an Algorand Standard Asset (ASA) using A
 1. Clone the repository
 2. Navigate to the project directory
 3. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -40,6 +55,7 @@ The token is created with the following parameters:
 ## Usage
 
 1. Run the token creation script:
+
 ```bash
 npm run create
 ```
@@ -79,6 +95,7 @@ const asset = await algorand.send.assetCreate({
 ## Viewing Your Asset
 
 After creation, you can view your asset on the Algorand TestNet explorer using the provided URL:
+
 ```
 https://lora.algokit.io/testnet/asset/<asset-id>
 ```
@@ -90,3 +107,4 @@ https://lora.algokit.io/testnet/asset/<asset-id>
 ## License
 
 ISC
+
