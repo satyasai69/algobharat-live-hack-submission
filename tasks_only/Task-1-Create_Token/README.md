@@ -1,6 +1,6 @@
 ## Asset Creation Results
 
-The token was successfully created on Algorand TestNet with the following details:
+The token was successfully created on Algorand TestNet with the following details s:
 
 - Asset ID: 741162702
 - Asset Explorer URL: https://lora.algokit.io/testnet/asset/741162702
