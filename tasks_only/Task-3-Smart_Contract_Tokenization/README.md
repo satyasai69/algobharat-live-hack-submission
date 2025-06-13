@@ -8,7 +8,7 @@ The smart contract and ASA were successfully deployed on Algorand TestNet with t
 
 You can verify the smart contract, asset creation, and transactions using the provided URL above. A screenshot of the account activity is available in `screenshot.png`.
 
-![screenshot](screenshot.png)
+[![screenshot.png](https://i.postimg.cc/tTfG8YBj/screenshot.png)](https://postimg.cc/njvWDc8R)
 
 # Smart Contract Tokenization with Algorand
 
