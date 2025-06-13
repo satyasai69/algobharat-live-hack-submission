@@ -90,6 +90,47 @@ const asset = await algorand.send.assetCreate({
 3. You can view the asset details using the provided explorer URL
 4. Make sure to fund your account with TestNet ALGOs before creating the asset
 
+## Asset Control Features
+
+### Freeze Operation
+The freeze operation allows the freeze address to temporarily lock asset transfers for specific accounts. This is useful for:
+- Compliance requirements
+- Preventing transfers during certain periods
+- Regulatory controls
+
+```javascript
+const freezeTxn = algosdk.makeAssetFreezeTxnWithSuggestedParamsFromObject({
+  from: address,
+  suggestedParams,
+  assetIndex,
+  freezeState: true,
+  freezeTarget: targetAddress
+});
+```
+
+### Clawback Operation
+The clawback feature enables the clawback address to recover assets from any holder's account. Use cases include:
+- Regulatory compliance
+- Account recovery
+- Enforcing terms of service
+
+```javascript
+const clawbackTxn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
+  from: manager.addr,
+  to: creator.addr,
+  revocationTarget: receiver.addr,
+  suggestedParams,
+  assetIndex,
+  amount: 1
+});
+```
+
+### Security Considerations
+1. Only authorized addresses can perform freeze and clawback operations
+2. These operations should be used responsibly and transparently
+3. Implement proper access controls for these sensitive operations
+4. Document and communicate the conditions under which these controls may be used
+
 ## Viewing Your Asset
 
 After creation, you can view your asset on the Algorand TestNet explorer using the provided URL:
