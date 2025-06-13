@@ -1,0 +1,31 @@
+{
+    "name": "elonmuskfire",
+    "description": "elonmuskfire f*ck youer ass",
+    "image": "https://ipfs.io/ipfs/bafybeihgaevhc5ryia7ooz4uln4hzvd6ob5a5t7lynpohueqdeer274l3m",
+    "image_mimetype": "image/png",
+    "external_url": "https://ipfs.io/ipfs/bafybeihgaevhc5ryia7ooz4uln4hzvd6ob5a5t7lynpohueqdeer274l3m",
+    "properties": {
+        "simple_property": "Dashing Item",
+        "rich_property": {
+            "name": "elonmuskfire",
+            "value": "100000",
+            "display_value": "123 f*ck Example Value",
+            "class": "emphasis",
+            "css": {
+                "color": "#ffffff",
+                "font-weight": "bold",
+                "text-decoration": "underline"
+            }
+        },
+        "array_property": {
+            "name": "Name",
+            "value": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "class": "emphasis"
+        }
+    }
+}

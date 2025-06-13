@@ -1,0 +1,15 @@
+{
+  "name": "task-2-add_metadata_and_asset_controls",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@algorandfoundation/algokit-utils": "^9.1.0"
+  }
+}

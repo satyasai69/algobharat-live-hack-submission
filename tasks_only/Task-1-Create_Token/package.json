@@ -1,0 +1,17 @@
+{
+  "name": "task-1-create_token",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create": "node src/index.js"
+  },
+  "dependencies": {
+    "@algorandfoundation/algokit-utils": "^9.1.0"
+  },
+  "devDependencies": {}
+}
