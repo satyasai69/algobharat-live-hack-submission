@@ -41,10 +41,10 @@ async function create_asset() {
   //assetcreate
   const asset = await algorand.send.assetCreate({
     sender: creator.addr,
-    total: 100n,
-    decimals: 0,
-    unitName: "AlgoN",
-    assetName: "AlgoNFT",
+    total: 1000000n,
+    decimals: 2,
+    unitName: "FT",
+    assetName: "FungibleToken",
     manager: manager.addr,
     reserve: reserve.addr,
     freeze: freeze.addr,
