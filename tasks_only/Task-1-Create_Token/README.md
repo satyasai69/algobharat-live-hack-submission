@@ -8,9 +8,7 @@ The token was successfully created on Algorand TestNet with the following detail
 
 You can verify the token creation and its details using the provided URLs above. A screenshot of the successful creation is available in `Screenshot.png`.
 
-
-
-
+![screenshot](Screenshot.png)
 
 # Create Token using AlgoKit
 
@@ -107,4 +105,3 @@ https://lora.algokit.io/testnet/asset/<asset-id>
 ## License
 
 ISC
-
