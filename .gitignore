@@ -24,3 +24,5 @@ output/
 *.png
 tasks_only/Task-2-Add_Metadata_and_Asset_Controls/src/test.js
 note.txt
+tasks_only/Task-4-Multisig/package-lock.json
+tasks_only/Task-6/package-lock.json
