@@ -6,4 +6,4 @@ type = 'workspace'
 projects_root_path = 'projects'
 
 [project.run]
-build = ['Task-7-Complete_Application-contracts', 'Task-7-Complete_Application-frontend']
+build = ['marketplace-contracts', 'marketplace-frontend']

@@ -15,24 +15,24 @@ permissions:
   packages: read
 
 jobs:
-  Task-7-Complete_Application-contracts-validate:
-    name: Run Task-7-Complete_Application-contracts release
+  marketplace-contracts-validate:
+    name: Run marketplace-contracts release
     secrets: inherit
-    uses: ./.github/workflows/Task-7-Complete_Application-contracts-ci.yaml
+    uses: ./.github/workflows/marketplace-contracts-ci.yaml
 
-  Task-7-Complete_Application-contracts-release:
-    name: Run Task-7-Complete_Application-contracts release
+  marketplace-contracts-release:
+    name: Run marketplace-contracts release
     secrets: inherit
-    uses: ./.github/workflows/Task-7-Complete_Application-contracts-cd.yaml
-    needs: Task-7-Complete_Application-contracts-validate
+    uses: ./.github/workflows/marketplace-contracts-cd.yaml
+    needs: marketplace-contracts-validate
 
-  Task-7-Complete_Application-frontend-validate:
-    name: Run Task-7-Complete_Application-frontend release
+  marketplace-frontend-validate:
+    name: Run marketplace-frontend release
     secrets: inherit
-    uses: ./.github/workflows/Task-7-Complete_Application-frontend-ci.yaml
+    uses: ./.github/workflows/marketplace-frontend-ci.yaml
 
-  Task-7-Complete_Application-frontend-release:
-    name: Run Task-7-Complete_Application-frontend release
+  marketplace-frontend-release:
+    name: Run marketplace-frontend release
     secrets: inherit
-    uses: ./.github/workflows/Task-7-Complete_Application-frontend-cd.yaml
-    needs: Task-7-Complete_Application-frontend-validate
+    uses: ./.github/workflows/marketplace-frontend-cd.yaml
+    needs: marketplace-frontend-validate

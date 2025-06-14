@@ -4,11 +4,11 @@ on: [pull_request]
 
 
 jobs:
-  Task-7-Complete_Application-contracts-ci:
-    name: Run Task-7-Complete_Application-contracts validation
-    uses: ./.github/workflows/Task-7-Complete_Application-contracts-ci.yaml
+  marketplace-contracts-ci:
+    name: Run marketplace-contracts validation
+    uses: ./.github/workflows/marketplace-contracts-ci.yaml
 
-  Task-7-Complete_Application-frontend-ci:
-    name: Run Task-7-Complete_Application-frontend validation
-    uses: ./.github/workflows/Task-7-Complete_Application-frontend-ci.yaml
+  marketplace-frontend-ci:
+    name: Run marketplace-frontend validation
+    uses: ./.github/workflows/marketplace-frontend-ci.yaml
 
