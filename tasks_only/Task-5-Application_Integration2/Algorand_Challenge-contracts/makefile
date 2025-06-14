@@ -1,0 +1,1 @@
+createAccount: npx ts-node -e "import algosdk from 'algosdk'; const acct = algosdk.generateAccount(); console.log('Address:', acct.addr.toString()); console.log('Mnemonic:', algosdk.secretKeyToMnemonic(acct.sk));"

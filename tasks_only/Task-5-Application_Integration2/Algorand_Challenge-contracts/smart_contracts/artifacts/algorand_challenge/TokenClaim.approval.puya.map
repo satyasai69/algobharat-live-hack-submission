@@ -1,0 +1,1294 @@
+{
+  "version": 3,
+  "sources": [
+    "/Users/satyasaichava/algobharat-live-hack-submission/tasks_only/Task-5-Application_Integration/projects/Algorand_Challenge-contracts/smart_contracts/algorand_challenge/contract.algo.ts"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAUA;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;AAAA;;AA6GE;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAdA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAjCA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;AAhCA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;AAZA;;AAAA;AAAA;AAAA;;AAAA;AAlBF;;;AAAA;;;AAkBE;;;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAlBF;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;;AAkBE;;;AACS;;;;;;;;AAAA;;AAAA;AAAP;AAYoB;;AAG4B;AAAA;AAxBF;AAwBE;AAAA;AACzC;AAvCyB;AAuCzB;AAAP;AAYA;AAlDqB;;;AAFI;;;;;;;AAoDzB;;;;AAAA;;;AAAA;AAQkD;AAAjB;AA7Ca;AA6C9C;AAAA;AAhDiD;AAAA;AAAA;AAAA;AAZxB;AA6DC;AAjDuB;AAiDjD;AAAA;;AAOoB;;AAC4B;AAAA;AAtDF;AAsDE;AAAA;AAEzC;AAtEyB;AAsEzB;AAAP;AASA;AAhFyB;;;;;;;AAgFzB;;;AAAA;;;AAAA;AAMkD;AAAjB;AAvEa;AAuE9C;AAAA;AA1EiD;AAAA;AAAA;AAAA;AAZxB;AAuFC;AA3EuB;AA2EjD;AAAA;;AA3EiD;AAAA;AAAA;AAAA;AAyFjD",
+  "op_pc_offset": 0,
+  "pc_events": {
+    "1": {
+      "subroutine": "@algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram",
+      "params": {},
+      "block": "main",
+      "stack_in": [],
+      "op": "intcblock 0 1 1000000 5"
+    },
+    "9": {
+      "op": "bytecblock \"total_claimed\" \"user_claims\" 0x151f7c75"
+    },
+    "42": {
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "44": {
+      "op": "bz main_bare_routing@10",
+      "stack_out": []
+    },
+    "47": {
+      "op": "pushbytess 0x02bece11 0xf5892d56 0x44f96e29 0x74fe2b72 0x54254f0a // method \"hello(string)string\", method \"claimTokens()void\", method \"claimAlgo()void\", method \"getTotalClaimed()uint64\", method \"fundContract()void\"",
+      "defined_out": [
+        "Method(claimAlgo()void)",
+        "Method(claimTokens()void)",
+        "Method(fundContract()void)",
+        "Method(getTotalClaimed()uint64)",
+        "Method(hello(string)string)"
+      ],
+      "stack_out": [
+        "Method(hello(string)string)",
+        "Method(claimTokens()void)",
+        "Method(claimAlgo()void)",
+        "Method(getTotalClaimed()uint64)",
+        "Method(fundContract()void)"
+      ]
+    },
+    "74": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(claimAlgo()void)",
+        "Method(claimTokens()void)",
+        "Method(fundContract()void)",
+        "Method(getTotalClaimed()uint64)",
+        "Method(hello(string)string)",
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "Method(hello(string)string)",
+        "Method(claimTokens()void)",
+        "Method(claimAlgo()void)",
+        "Method(getTotalClaimed()uint64)",
+        "Method(fundContract()void)",
+        "tmp%2#0"
+      ]
+    },
+    "77": {
+      "op": "match main_hello_route@3 main_claimTokens_route@4 main_claimAlgo_route@5 main_getTotalClaimed_route@6 main_fundContract_route@7",
+      "stack_out": []
+    },
+    "89": {
+      "block": "main_after_if_else@14",
+      "stack_in": [],
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "90": {
+      "op": "return",
+      "stack_out": []
+    },
+    "91": {
+      "block": "main_fundContract_route@7",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%23#0"
+      ],
+      "stack_out": [
+        "tmp%23#0"
+      ]
+    },
+    "93": {
+      "op": "!",
+      "defined_out": [
+        "tmp%24#0"
+      ],
+      "stack_out": [
+        "tmp%24#0"
+      ]
+    },
+    "94": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "95": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%25#0"
+      ],
+      "stack_out": [
+        "tmp%25#0"
+      ]
+    },
+    "97": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "98": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "99": {
+      "op": "return",
+      "stack_out": []
+    },
+    "100": {
+      "block": "main_getTotalClaimed_route@6",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%18#0"
+      ],
+      "stack_out": [
+        "tmp%18#0"
+      ]
+    },
+    "102": {
+      "op": "!",
+      "defined_out": [
+        "tmp%19#0"
+      ],
+      "stack_out": [
+        "tmp%19#0"
+      ]
+    },
+    "103": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "104": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%20#0"
+      ],
+      "stack_out": [
+        "tmp%20#0"
+      ]
+    },
+    "106": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "107": {
+      "callsub": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.getTotalClaimed",
+      "op": "callsub getTotalClaimed",
+      "defined_out": [
+        "to_encode%1#0"
+      ],
+      "stack_out": [
+        "to_encode%1#0"
+      ]
+    },
+    "110": {
+      "op": "itob",
+      "defined_out": [
+        "val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%0#0"
+      ]
+    },
+    "111": {
+      "op": "bytec_2 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "val_as_bytes%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "112": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "val_as_bytes%0#0"
+      ]
+    },
+    "113": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%22#0"
+      ],
+      "stack_out": [
+        "tmp%22#0"
+      ]
+    },
+    "114": {
+      "op": "log",
+      "stack_out": []
+    },
+    "115": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "116": {
+      "op": "return",
+      "stack_out": []
+    },
+    "117": {
+      "block": "main_claimAlgo_route@5",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%14#0"
+      ],
+      "stack_out": [
+        "tmp%14#0"
+      ]
+    },
+    "119": {
+      "op": "!",
+      "defined_out": [
+        "tmp%15#0"
+      ],
+      "stack_out": [
+        "tmp%15#0"
+      ]
+    },
+    "120": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "121": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%16#0"
+      ],
+      "stack_out": [
+        "tmp%16#0"
+      ]
+    },
+    "123": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "124": {
+      "callsub": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.claimAlgo",
+      "op": "callsub claimAlgo"
+    },
+    "127": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "128": {
+      "op": "return",
+      "stack_out": []
+    },
+    "129": {
+      "block": "main_claimTokens_route@4",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%10#0"
+      ],
+      "stack_out": [
+        "tmp%10#0"
+      ]
+    },
+    "131": {
+      "op": "!",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "132": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "133": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%12#0"
+      ],
+      "stack_out": [
+        "tmp%12#0"
+      ]
+    },
+    "135": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "136": {
+      "callsub": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.claimTokens",
+      "op": "callsub claimTokens"
+    },
+    "139": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "140": {
+      "op": "return",
+      "stack_out": []
+    },
+    "141": {
+      "block": "main_hello_route@3",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "143": {
+      "op": "!",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "144": {
+      "error": "OnCompletion is not NoOp",
+      "op": "assert // OnCompletion is not NoOp",
+      "stack_out": []
+    },
+    "145": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "147": {
+      "error": "can only call when not creating",
+      "op": "assert // can only call when not creating",
+      "stack_out": []
+    },
+    "148": {
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "151": {
+      "op": "extract 2 0",
+      "defined_out": [
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0"
+      ]
+    },
+    "154": {
+      "callsub": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.hello",
+      "op": "callsub hello",
+      "defined_out": [
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0"
+      ]
+    },
+    "157": {
+      "op": "dup",
+      "defined_out": [
+        "to_encode%0#0",
+        "to_encode%0#0 (copy)"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "to_encode%0#0 (copy)"
+      ]
+    },
+    "158": {
+      "op": "len",
+      "defined_out": [
+        "length%0#0",
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "length%0#0"
+      ]
+    },
+    "159": {
+      "op": "itob",
+      "defined_out": [
+        "as_bytes%0#0",
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "as_bytes%0#0"
+      ]
+    },
+    "160": {
+      "op": "extract 6 2",
+      "defined_out": [
+        "length_uint16%0#0",
+        "to_encode%0#0"
+      ],
+      "stack_out": [
+        "to_encode%0#0",
+        "length_uint16%0#0"
+      ]
+    },
+    "163": {
+      "op": "swap",
+      "stack_out": [
+        "length_uint16%0#0",
+        "to_encode%0#0"
+      ]
+    },
+    "164": {
+      "op": "concat",
+      "defined_out": [
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "encoded_value%0#0"
+      ]
+    },
+    "165": {
+      "op": "bytec_2 // 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "encoded_value%0#0"
+      ],
+      "stack_out": [
+        "encoded_value%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "166": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "encoded_value%0#0"
+      ]
+    },
+    "167": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%9#0"
+      ]
+    },
+    "168": {
+      "op": "log",
+      "stack_out": []
+    },
+    "169": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "170": {
+      "op": "return",
+      "stack_out": []
+    },
+    "171": {
+      "block": "main_bare_routing@10",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%27#0"
+      ],
+      "stack_out": [
+        "tmp%27#0"
+      ]
+    },
+    "173": {
+      "op": "bnz main_after_if_else@14",
+      "stack_out": []
+    },
+    "176": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%28#0"
+      ],
+      "stack_out": [
+        "tmp%28#0"
+      ]
+    },
+    "178": {
+      "op": "!",
+      "defined_out": [
+        "tmp%29#0"
+      ],
+      "stack_out": [
+        "tmp%29#0"
+      ]
+    },
+    "179": {
+      "error": "can only call when creating",
+      "op": "assert // can only call when creating",
+      "stack_out": []
+    },
+    "180": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "181": {
+      "op": "return",
+      "stack_out": []
+    },
+    "182": {
+      "subroutine": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.hello",
+      "params": {
+        "name#0": "bytes"
+      },
+      "block": "hello",
+      "stack_in": [],
+      "op": "proto 1 1"
+    },
+    "185": {
+      "op": "pushbytes \"Hello \"",
+      "defined_out": [
+        "\"Hello \""
+      ],
+      "stack_out": [
+        "\"Hello \""
+      ]
+    },
+    "193": {
+      "op": "frame_dig -1",
+      "defined_out": [
+        "\"Hello \"",
+        "name#0 (copy)"
+      ],
+      "stack_out": [
+        "\"Hello \"",
+        "name#0 (copy)"
+      ]
+    },
+    "195": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "196": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "197": {
+      "subroutine": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.claimTokens",
+      "params": {},
+      "block": "claimTokens",
+      "stack_in": [],
+      "op": "txn Sender",
+      "defined_out": [
+        "claimer#0"
+      ],
+      "stack_out": [
+        "claimer#0"
+      ]
+    },
+    "199": {
+      "op": "dup",
+      "defined_out": [
+        "claimer#0",
+        "claimer#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "claimer#0 (copy)"
+      ]
+    },
+    "200": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "claimer#0",
+        "claimer#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "claimer#0 (copy)",
+        "0"
+      ]
+    },
+    "201": {
+      "op": "bytec_1 // \"user_claims\"",
+      "defined_out": [
+        "\"user_claims\"",
+        "0",
+        "claimer#0",
+        "claimer#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "claimer#0 (copy)",
+        "0",
+        "\"user_claims\""
+      ]
+    },
+    "202": {
+      "op": "app_local_get_ex",
+      "defined_out": [
+        "claimer#0",
+        "maybe_exists%0#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "203": {
+      "error": "check LocalState exists",
+      "op": "assert // check LocalState exists",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "204": {
+      "op": "dup",
+      "defined_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)"
+      ]
+    },
+    "205": {
+      "op": "intc_3 // 5",
+      "defined_out": [
+        "5",
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)",
+        "5"
+      ]
+    },
+    "206": {
+      "op": "<",
+      "defined_out": [
+        "claimer#0",
+        "tmp%0#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "tmp%0#0"
+      ]
+    },
+    "207": {
+      "error": "Maximum claims reached",
+      "op": "assert // Maximum claims reached",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "208": {
+      "op": "itxn_begin"
+    },
+    "209": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "0"
+      ]
+    },
+    "210": {
+      "op": "itxn_field XferAsset",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "212": {
+      "op": "intc_2 // 1000000",
+      "defined_out": [
+        "1000000",
+        "claimer#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "1000000"
+      ]
+    },
+    "213": {
+      "op": "itxn_field AssetAmount",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "215": {
+      "op": "dig 1",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "claimer#0 (copy)"
+      ]
+    },
+    "217": {
+      "op": "itxn_field AssetReceiver",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "219": {
+      "op": "pushint 4 // 4",
+      "defined_out": [
+        "4",
+        "claimer#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "4"
+      ]
+    },
+    "221": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "223": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "0"
+      ]
+    },
+    "224": {
+      "op": "itxn_field Fee",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "226": {
+      "op": "itxn_submit"
+    },
+    "227": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "claimer#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "1"
+      ]
+    },
+    "228": {
+      "op": "+",
+      "defined_out": [
+        "claimer#0",
+        "new_state_value%0#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "new_state_value%0#0"
+      ]
+    },
+    "229": {
+      "op": "bytec_1 // \"user_claims\""
+    },
+    "230": {
+      "op": "swap",
+      "stack_out": [
+        "claimer#0",
+        "\"user_claims\"",
+        "new_state_value%0#0"
+      ]
+    },
+    "231": {
+      "op": "app_local_put",
+      "stack_out": []
+    },
+    "232": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "0"
+      ]
+    },
+    "233": {
+      "op": "bytec_0 // \"total_claimed\"",
+      "defined_out": [
+        "\"total_claimed\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"total_claimed\""
+      ]
+    },
+    "234": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%1#0",
+        "maybe_value%1#0"
+      ],
+      "stack_out": [
+        "maybe_value%1#0",
+        "maybe_exists%1#0"
+      ]
+    },
+    "235": {
+      "error": "check GlobalState exists",
+      "op": "assert // check GlobalState exists",
+      "stack_out": [
+        "maybe_value%1#0"
+      ]
+    },
+    "236": {
+      "op": "intc_2 // 1000000",
+      "stack_out": [
+        "maybe_value%1#0",
+        "1000000"
+      ]
+    },
+    "237": {
+      "op": "+",
+      "defined_out": [
+        "new_state_value%1#0"
+      ],
+      "stack_out": [
+        "new_state_value%1#0"
+      ]
+    },
+    "238": {
+      "op": "bytec_0 // \"total_claimed\"",
+      "stack_out": [
+        "new_state_value%1#0",
+        "\"total_claimed\""
+      ]
+    },
+    "239": {
+      "op": "swap",
+      "stack_out": [
+        "\"total_claimed\"",
+        "new_state_value%1#0"
+      ]
+    },
+    "240": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "241": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "242": {
+      "subroutine": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.claimAlgo",
+      "params": {},
+      "block": "claimAlgo",
+      "stack_in": [],
+      "op": "txn Sender",
+      "defined_out": [
+        "claimer#0"
+      ],
+      "stack_out": [
+        "claimer#0"
+      ]
+    },
+    "244": {
+      "op": "dup",
+      "defined_out": [
+        "claimer#0",
+        "claimer#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "claimer#0 (copy)"
+      ]
+    },
+    "245": {
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0",
+        "claimer#0",
+        "claimer#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "claimer#0 (copy)",
+        "0"
+      ]
+    },
+    "246": {
+      "op": "bytec_1 // \"user_claims\"",
+      "defined_out": [
+        "\"user_claims\"",
+        "0",
+        "claimer#0",
+        "claimer#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "claimer#0 (copy)",
+        "0",
+        "\"user_claims\""
+      ]
+    },
+    "247": {
+      "op": "app_local_get_ex",
+      "defined_out": [
+        "claimer#0",
+        "maybe_exists%0#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "248": {
+      "error": "check LocalState exists",
+      "op": "assert // check LocalState exists",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "249": {
+      "op": "dup",
+      "defined_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)"
+      ]
+    },
+    "250": {
+      "op": "intc_3 // 5",
+      "defined_out": [
+        "5",
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "userClaimCount#0 (copy)",
+        "5"
+      ]
+    },
+    "251": {
+      "op": "<",
+      "defined_out": [
+        "claimer#0",
+        "tmp%0#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "tmp%0#0"
+      ]
+    },
+    "252": {
+      "error": "Maximum claims reached",
+      "op": "assert // Maximum claims reached",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "253": {
+      "op": "itxn_begin"
+    },
+    "254": {
+      "op": "intc_2 // 1000000",
+      "defined_out": [
+        "1000000",
+        "claimer#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "1000000"
+      ]
+    },
+    "255": {
+      "op": "itxn_field Amount",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "257": {
+      "op": "dig 1",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "claimer#0 (copy)"
+      ]
+    },
+    "259": {
+      "op": "itxn_field Receiver",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "261": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "claimer#0",
+        "userClaimCount#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "1"
+      ]
+    },
+    "262": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "264": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "0"
+      ]
+    },
+    "265": {
+      "op": "itxn_field Fee",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0"
+      ]
+    },
+    "267": {
+      "op": "itxn_submit"
+    },
+    "268": {
+      "op": "intc_1 // 1",
+      "stack_out": [
+        "claimer#0",
+        "userClaimCount#0",
+        "1"
+      ]
+    },
+    "269": {
+      "op": "+",
+      "defined_out": [
+        "claimer#0",
+        "new_state_value%0#0"
+      ],
+      "stack_out": [
+        "claimer#0",
+        "new_state_value%0#0"
+      ]
+    },
+    "270": {
+      "op": "bytec_1 // \"user_claims\""
+    },
+    "271": {
+      "op": "swap",
+      "stack_out": [
+        "claimer#0",
+        "\"user_claims\"",
+        "new_state_value%0#0"
+      ]
+    },
+    "272": {
+      "op": "app_local_put",
+      "stack_out": []
+    },
+    "273": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "0"
+      ]
+    },
+    "274": {
+      "op": "bytec_0 // \"total_claimed\"",
+      "defined_out": [
+        "\"total_claimed\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"total_claimed\""
+      ]
+    },
+    "275": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%1#0",
+        "maybe_value%1#0"
+      ],
+      "stack_out": [
+        "maybe_value%1#0",
+        "maybe_exists%1#0"
+      ]
+    },
+    "276": {
+      "error": "check GlobalState exists",
+      "op": "assert // check GlobalState exists",
+      "stack_out": [
+        "maybe_value%1#0"
+      ]
+    },
+    "277": {
+      "op": "intc_2 // 1000000",
+      "stack_out": [
+        "maybe_value%1#0",
+        "1000000"
+      ]
+    },
+    "278": {
+      "op": "+",
+      "defined_out": [
+        "new_state_value%1#0"
+      ],
+      "stack_out": [
+        "new_state_value%1#0"
+      ]
+    },
+    "279": {
+      "op": "bytec_0 // \"total_claimed\"",
+      "stack_out": [
+        "new_state_value%1#0",
+        "\"total_claimed\""
+      ]
+    },
+    "280": {
+      "op": "swap",
+      "stack_out": [
+        "\"total_claimed\"",
+        "new_state_value%1#0"
+      ]
+    },
+    "281": {
+      "op": "app_global_put",
+      "stack_out": []
+    },
+    "282": {
+      "retsub": true,
+      "op": "retsub"
+    },
+    "283": {
+      "subroutine": "smart_contracts/algorand_challenge/contract.algo.ts::TokenClaim.getTotalClaimed",
+      "params": {},
+      "block": "getTotalClaimed",
+      "stack_in": [],
+      "op": "intc_0 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "0"
+      ]
+    },
+    "284": {
+      "op": "bytec_0 // \"total_claimed\"",
+      "defined_out": [
+        "\"total_claimed\"",
+        "0"
+      ],
+      "stack_out": [
+        "0",
+        "\"total_claimed\""
+      ]
+    },
+    "285": {
+      "op": "app_global_get_ex",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "maybe_value%0#0"
+      ],
+      "stack_out": [
+        "maybe_value%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "286": {
+      "error": "check GlobalState exists",
+      "op": "assert // check GlobalState exists",
+      "stack_out": [
+        "maybe_value%0#0"
+      ]
+    },
+    "287": {
+      "retsub": true,
+      "op": "retsub"
+    }
+  }
+}

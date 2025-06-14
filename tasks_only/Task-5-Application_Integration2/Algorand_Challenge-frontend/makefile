@@ -1,0 +1,1 @@
+linkContract:  algokit project link --all -l typescript

@@ -22,3 +22,5 @@ Thumbs.db
 # Ignore local metadata or output
 output/
 *.png
+tasks_only/Task-2-Add_Metadata_and_Asset_Controls/src/test.js
+note.txt
