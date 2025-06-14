@@ -14,8 +14,6 @@ You can verify the smart contract, asset creation, and transactions using the pr
 
 This project demonstrates how to create a real Algorand Standard Asset (ASA) and link it with a smart contract that controls token minting and transfer restrictions through a whitelist mechanism.
 
-![screenshot](Screenshot.png)
-
 ## Features
 
 - **Smart Contract Deployment**: Deploy a TEAL smart contract that controls token behavior
