@@ -1,0 +1,14 @@
+name: Pull Request validation
+
+on: [pull_request]
+
+
+jobs:
+  Task-7-Complete_Application-contracts-ci:
+    name: Run Task-7-Complete_Application-contracts validation
+    uses: ./.github/workflows/Task-7-Complete_Application-contracts-ci.yaml
+
+  Task-7-Complete_Application-frontend-ci:
+    name: Run Task-7-Complete_Application-frontend validation
+    uses: ./.github/workflows/Task-7-Complete_Application-frontend-ci.yaml
+

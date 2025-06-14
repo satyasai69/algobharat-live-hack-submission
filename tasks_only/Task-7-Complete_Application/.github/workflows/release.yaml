@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  Task-7-Complete_Application-contracts-validate:
+    name: Run Task-7-Complete_Application-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/Task-7-Complete_Application-contracts-ci.yaml
+
+  Task-7-Complete_Application-contracts-release:
+    name: Run Task-7-Complete_Application-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/Task-7-Complete_Application-contracts-cd.yaml
+    needs: Task-7-Complete_Application-contracts-validate
+
+  Task-7-Complete_Application-frontend-validate:
+    name: Run Task-7-Complete_Application-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/Task-7-Complete_Application-frontend-ci.yaml
+
+  Task-7-Complete_Application-frontend-release:
+    name: Run Task-7-Complete_Application-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/Task-7-Complete_Application-frontend-cd.yaml
+    needs: Task-7-Complete_Application-frontend-validate
