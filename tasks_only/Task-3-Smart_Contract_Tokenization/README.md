@@ -1,8 +1,21 @@
+## Smart Contract Tokenization Results
+
+The smart contract and ASA were successfully deployed on Algorand TestNet with the following details:
+
+- Account Address: BJYOYIKCC4T5MSJTYERVXSK5KA3BROOKW4E372RKY5JMF6QUUVEI3WO7RE
+- Account Explorer URL: https://lora.algokit.io/testnet/account/BJYOYIKCC4T5MSJTYERVXSK5KA3BROOKW4E372RKY5JMF6QUUVEI3WO7RE
+- Asset Name: MySmartToken (MST)
+
+You can verify the smart contract, asset creation, and transactions using the provided URL above. A screenshot of the account activity is available in `screenshot.png`.
+
+[![screenshot.png](https://i.postimg.cc/tTfG8YBj/screenshot.png)](https://postimg.cc/njvWDc8R)
+
 # Algorand Smart ASA (Algorand Standard Asset) with Contract Logic
 
 This project demonstrates how to create a real Algorand Standard Asset (ASA) and link it with a smart contract that controls token minting and transfer restrictions through a whitelist mechanism.
 
 ![screenshot](Screenshot.png)
+
 ## Features
 
 - **Smart Contract Deployment**: Deploy a TEAL smart contract that controls token behavior
@@ -36,6 +49,7 @@ The contract implements the following functionality:
    ```
 
 The script will:
+
 - Create a wallet if one doesn't exist (or reuse an existing one)
 - Create a test receiver wallet
 - Deploy the smart contract
@@ -76,16 +90,19 @@ The script will:
 ## Implementation Details
 
 1. **Smart Contract Structure**:
+
    - Uses TEAL (Transaction Execution Approval Language) for Algorand smart contracts
    - Implements branching logic for different operations
    - Uses global state to track admin, asset ID, and whitelisted addresses
 
 2. **Whitelist Implementation**:
+
    - Supports multiple whitelisted addresses (currently two)
    - Checks if either sender or receiver is whitelisted before allowing transfers
    - Only admin can add addresses to the whitelist
 
 3. **ASA Integration**:
+
    - Creates a frozen ASA by default for security
    - Unfreezes only for whitelisted addresses
    - Links the ASA to the smart contract via the asset ID
@@ -102,4 +119,3 @@ The script will:
 - Implement balance tracking per address
 - Add clawback functionality for regulatory compliance
 - Implement more complex transfer rules
-
