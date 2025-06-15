@@ -1,0 +1,277 @@
+// src/components/Home.tsx
+import { Config as AlgokitConfig, microAlgos } from '@algorandfoundation/algokit-utils'
+import AlgorandClient from '@algorandfoundation/algokit-utils/types/algorand-client'
+import { useWallet } from '@txnlab/use-wallet'
+import { decodeAddress, decodeUint64, encodeAddress, encodeUint64 } from 'algosdk'
+import React, { useState } from 'react'
+import ConnectWallet from './components/ConnectWallet'
+import MethodCall from './components/MethodCall'
+import { AdvMarketplaceClient } from './contracts/AdvMarketplace'
+import * as methods from './methods'
+import { getAlgodConfigFromViteEnvironment } from './utils/network/getAlgoClientConfigs'
+import { useQuery } from '@tanstack/react-query'
+
+interface HomeProps {}
+
+const Home: React.FC<HomeProps> = () => {
+  AlgokitConfig.configure({ populateAppCallResources: true })
+
+  const [openWalletModal, setOpenWalletModal] = useState<boolean>(false)
+  const [appId, setAppId] = useState<number>(0)
+  const [amountToSell, setAmountToSell] = useState<bigint>(0n)
+  const [sellingPrice, setSellingPrice] = useState<bigint>(0n)
+  const listingsQuery = useQuery({
+    queryKey: ['listings', appId],
+    queryFn: async () => {
+      const allBoxesNames = await algorand.client.algod.getApplicationBoxes(appId).do()
+      return await Promise.all(
+        allBoxesNames.boxes.map(async (box) => {
+          const boxContent = await algorand.client.algod.getApplicationBoxByName(appId, box.name).do()
+          const keyPrefix = 'listings'.length
+          return {
+            seller: encodeAddress(box.name.slice(keyPrefix + 0, keyPrefix + 32)),
+            assetId: decodeUint64(box.name.slice(keyPrefix + 32, keyPrefix + 40), 'bigint'),
+            nonce: decodeUint64(box.name.slice(keyPrefix + 40, keyPrefix + 48), 'bigint'),
+            amount: decodeUint64(boxContent.value.slice(0, 8), 'bigint'),
+            unitaryPrice: decodeUint64(boxContent.value.slice(8, 16), 'bigint'),
+          }
+        }),
+      )
+    },
+    staleTime: 1_000,
+  })
+  const [sellerAddress, setSellerAddress] = useState<string>('')
+  const [assetToBuy, setAssetToBuy] = useState<bigint>(0n)
+  const [buyingNonce, setBuyingNonce] = useState<bigint>(0n)
+  const [buyingPrice, setBuyingPrice] = useState<bigint>(0n)
+  const [buyingQuantity, setBuyingQuantity] = useState<bigint>(0n)
+  const bestBidQuery = useQuery({
+    queryKey: ['bid', appId, sellerAddress, Number(assetToBuy), Number(buyingNonce)],
+    queryFn: async () => {
+      const boxContent = await algorand.client.algod
+        .getApplicationBoxByName(
+          appId,
+          new Uint8Array([
+            ...Buffer.from('listings'),
+            ...decodeAddress(sellerAddress).publicKey,
+            ...encodeUint64(assetToBuy),
+            ...encodeUint64(buyingNonce),
+          ]),
+        )
+        .do()
+      return {
+        bidder: encodeAddress(boxContent.value.slice(16, 48)),
+        bidQuantity: decodeUint64(boxContent.value.slice(48, 56), 'bigint'),
+        bidPrice: decodeUint64(boxContent.value.slice(56, 64), 'bigint'),
+      }
+    },
+    staleTime: 1_000,
+  })
+  const { activeAddress, signer } = useWallet()
+
+  const algodConfig = getAlgodConfigFromViteEnvironment()
+  const algorand = AlgorandClient.fromConfig({ algodConfig })
+  algorand.setDefaultSigner(signer)
+
+  const dmClient = new AdvMarketplaceClient(
+    {
+      resolveBy: 'id',
+      id: appId,
+      sender: { addr: activeAddress!, signer },
+    },
+    algorand.client.algod,
+  )
+
+  const toggleWalletModal = () => {
+    setOpenWalletModal(!openWalletModal)
+  }
+
+  return (
+    <div className="hero min-h-screen bg-teal-400">
+      <div className="hero-content text-center rounded-lg p-6 max-w-md bg-white mx-auto">
+        <div className="max-w-md">
+          <h1 className="text-4xl">
+            Welcome to <div className="font-bold">AlgoKit 🙂</div>
+          </h1>
+          <p className="py-6">
+            This starter has been generated using official AlgoKit React template. Refer to the resource below for next steps.
+          </p>
+
+          <div className="grid">
+            <button data-test-id="connect-wallet" className="btn m-2" onClick={toggleWalletModal}>
+              Wallet Connection
+            </button>
+
+            <div className="divider" />
+
+            <label className="label">App ID</label>
+            <input
+              type="number"
+              className="input input-bordered m-2"
+              value={appId}
+              onChange={(e) => setAppId(e.currentTarget.valueAsNumber || 0)}
+            />
+
+            {activeAddress && appId === 0 && (
+              <div>
+                <MethodCall methodFunction={methods.create(algorand, dmClient, activeAddress, setAppId)} text="Create Marketplace" />
+              </div>
+            )}
+
+            <div className="divider" />
+
+            {activeAddress && appId !== 0 && (
+              <div>
+                <label className="label">Amount To Sell</label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  value={amountToSell.toString()}
+                  onChange={(e) => setAmountToSell(BigInt(e.currentTarget.value || 0))}
+                />
+                <label className="label">Selling Price</label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  value={sellingPrice.toString()}
+                  onChange={(e) => setSellingPrice(BigInt(e.currentTarget.value || 0))}
+                />
+                <MethodCall
+                  methodFunction={methods.sell(algorand, dmClient, activeAddress, amountToSell, sellingPrice)}
+                  text="Sell a new asset"
+                />
+              </div>
+            )}
+
+            <div className="divider" />
+
+            <div>
+              <label className="label">Listings</label>
+              {appId !== 0 && !listingsQuery.isError && (
+                <ul>
+                  {listingsQuery.data?.map((listing) => (
+                    <li
+                      key={listing.seller + listing.assetId.toString() + listing.nonce.toString()}
+                    >{`assetId: ${listing.assetId}\namount: ${listing.amount}\nprice: ${listing.unitaryPrice}`}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <div className="divider" />
+
+            {activeAddress && appId !== 0 && (
+              <div>
+                <label className="label">Seller</label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  value={sellerAddress}
+                  onChange={(e) => setSellerAddress(e.currentTarget.value)}
+                />
+                <label className="label">Asset To Buy</label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  value={assetToBuy.toString()}
+                  onChange={(e) => setAssetToBuy(BigInt(e.currentTarget.value || 0))}
+                />
+                <label className="label">Nonce</label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  value={buyingNonce.toString()}
+                  onChange={(e) => setBuyingNonce(BigInt(e.currentTarget.value || 0))}
+                />
+                <label className="label">Price Per Unit</label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  value={buyingPrice.toString()}
+                  onChange={(e) => setBuyingPrice(BigInt(e.currentTarget.value || 0))}
+                />
+                <label className="label">Desired Quantity</label>
+                <input
+                  type="number"
+                  className="input input-bordered"
+                  value={buyingQuantity.toString()}
+                  onChange={(e) => setBuyingQuantity(BigInt(e.currentTarget.value || 0))}
+                />
+                <MethodCall
+                  methodFunction={methods.buy(
+                    algorand,
+                    dmClient,
+                    activeAddress,
+                    sellerAddress,
+                    assetToBuy,
+                    buyingNonce,
+                    buyingQuantity,
+                    buyingPrice,
+                  )}
+                  text={`Buy ${buyingQuantity} unit for ${Number(buyingPrice * buyingQuantity) / 1e9} microALGO`}
+                />
+                <MethodCall
+                  methodFunction={async () => {
+                    const { appAddress } = await dmClient.appClient.getAppReference()
+
+                    await dmClient.bid({
+                      owner: sellerAddress,
+                      asset: assetToBuy,
+                      nonce: buyingNonce,
+                      bidPay: await algorand.transactions.payment({
+                        sender: activeAddress,
+                        receiver: appAddress,
+                        amount: microAlgos(Number(buyingPrice * buyingQuantity) / 1e3),
+                        extraFee: microAlgos(1_000),
+                      }),
+                      quantity: buyingQuantity,
+                      unitaryPrice: buyingPrice,
+                    })
+                  }}
+                  text={`Bid ${Number(buyingPrice * buyingQuantity) / 1e9} ALGO for ${buyingQuantity} unit of ASA `}
+                />
+              </div>
+            )}
+
+            <div className="divider" />
+
+            <div>
+              <label className="label">Best bid</label>
+              {!bestBidQuery.isError && bestBidQuery.data && (
+                <div>
+                  {`quantity: ${bestBidQuery.data.bidQuantity}\nprice: ${bestBidQuery.data.bidPrice}`}
+                  <MethodCall
+                    methodFunction={async () => {
+                      await dmClient.acceptBid(
+                        {
+                          asset: assetToBuy,
+                          nonce: buyingNonce,
+                        },
+                        { sendParams: { fee: microAlgos(3_000) } },
+                      )
+                    }}
+                    text={`Accept ${Number(bestBidQuery.data.bidQuantity * bestBidQuery.data.bidPrice) / 1e9} ALGO bid`}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/*{activeAddress !== seller && appId !== 0 && unitsLeft === 0n && (*/}
+            {/*  <button className="btn btn-disabled m-2" disabled={true}>*/}
+            {/*    SOLD OUT!*/}
+            {/*  </button>*/}
+            {/*)}*/}
+
+            {/*{activeAddress === seller && appId !== 0 && unitsLeft === 0n && (*/}
+            {/*  <MethodCall methodFunction={methods.deleteApp(dmClient, setAppId)} text="Delete App"/>*/}
+            {/*)}*/}
+          </div>
+
+          <ConnectWallet openModal={openWalletModal} closeModal={toggleWalletModal} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Home
